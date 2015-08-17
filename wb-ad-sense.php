@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: WB ADS ROTATOR
+Plugin Name: WB Ads Split Test
 Plugin URI: http://www.wbcomdesigns.com
-Description: Place custom ads on your site
+Description: It allows you to hooks ads to any custom post type at multiple location and also offers your split testing.
 Version: 1.0
 Author: WBCOM DESIGNS
-Author URI: http://www.wbcomdesigns.com
+Author URI: https://www.wbcomdesigns.com
 License: GPL2
 http://www.gnu.org/licenses/gpl-2.0.html
 */ 
