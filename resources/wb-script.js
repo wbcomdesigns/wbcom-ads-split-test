@@ -1,17 +1,16 @@
 // JavaScript Document
 jQuery(document).ready(function(e) {
 		//show/hide sidebar assistance, and suggest padding
-		jQuery('#wb_adlocation').change(suggestPadding);
-		function suggestPadding() {
-			var val = jQuery('#wb_adlocation').val();
+		jQuery('.wb_adlocation').on('change',function(){
+			var val = jQuery(this).val();
 			var padding = "10px"; //default
 			if(val=='SA' || val=='SB' || val=='SC')
 			{
-				jQuery('#sidebarwarning').show();
+				jQuery(this).closest('.single-ad').find('.sidebarwarning').show();
 			}
 			else
 			{
-				jQuery('#sidebarwarning').hide();
+				jQuery(this).closest('.single-ad').find('.sidebarwarning').hide();
 				
 				if(val=='AP') padding = "0px 0px 10px 0px";
 				if(val=='IR') padding = "0px 0px 10px 10px";
@@ -19,21 +18,24 @@ jQuery(document).ready(function(e) {
 				if(val=='BP') padding = "10px 0px 0px 0px";
 				
 			}
-			jQuery('#wb_adpadding').val(padding);
-		}
+				jQuery(this).closest('.single-ad').find('input[name*="wb_adpadding"]').val(padding);
+			
+		});
 		
 		
 		//show/hide custom color
-		jQuery('#wb_colordefault, #wb_colorcustom').change(toggleAdColor);
+		jQuery('input[name*="wb_color"]').change(toggleAdColor);
 		function toggleAdColor() {
-			if(jQuery('#wb_colorcustom').attr('checked'))
-			{
-				jQuery('.as_adcustomcolorrow').show();
-			}
-			else
-			{
-				jQuery('.as_adcustomcolorrow').hide();
-			}
+			jQuery('input[name*="wb_color"]:checked').each(function( index ) {
+				if(jQuery(this).attr('checked') && jQuery(this).hasClass('wb_colorcustom'))
+				{
+					jQuery(this).closest('.single-ad').find('.as_adcustomcolorrow').show();
+				}
+				else
+				{
+					jQuery(this).closest('.single-ad').find('.as_adcustomcolorrow').hide();
+				}
+			});
 		}
 		toggleAdColor();
 		
@@ -41,54 +43,31 @@ jQuery(document).ready(function(e) {
 	var val = jQuery('#as_criteria').val();
 	
 	//set name and abbrev
-	if(val=='allpages')
+	if(val=='mobile')
 	{
-		jQuery('#as_segmentname').val('All Pages');
-		jQuery('#as_segmentabbrev').val('Pgs');
-	}
-	else if(val=='allposts')
-	{
-		jQuery('#as_segmentname').val('All Posts');
-		jQuery('#as_segmentabbrev').val('Pts');
+		jQuery('#as_segmentname').val('Mobile');
+		jQuery('#as_segmentabbrev').val('Mob');
 	}
 	else if(val=='homepage')
 	{
 		jQuery('#as_segmentname').val('Home Page');
 		jQuery('#as_segmentabbrev').val('Hom');
 	}
-	else if(val=='page')
+	else
 	{
-		var pgname = jQuery('#as_criteriaparam_page option:selected').text();
-		jQuery('#as_segmentname').val(pgname);
-		jQuery('#as_segmentabbrev').val(pgname.substring(0,3));
-	}
-	else if(val=='post')
-	{
-		var postname = jQuery('#as_criteriaparam_post option:selected').text();
-		jQuery('#as_segmentname').val(postname);
-		jQuery('#as_segmentabbrev').val(postname.substring(0,3));
-	}
-	else if(val=='mobile')
-	{
-		jQuery('#as_segmentname').val('Mobile');
-		jQuery('#as_segmentabbrev').val('Mob');
+		lable=jQuery('#as_criteria option:selected').text();
+		jQuery('#as_segmentname').val(lable);
+		jQuery('#as_segmentabbrev').val(lable.substr(0,3));
 	}
 	
 	//show/hide other fields
-	if(val=='page')
+	if(val=='mobile' || val=='homepage')
 	{
-		jQuery('.as_criteriasetting_post').hide();
-		jQuery('.as_criteriasetting_page').show();
-	}
-	else if(val=='post')
-	{
-		jQuery('.as_criteriasetting_page').hide();
-		jQuery('.as_criteriasetting_post').show();
+		jQuery('.as_ex_in_id').hide();
 	}
 	else
 	{
-		jQuery('.as_criteriasetting_page').hide();
-		jQuery('.as_criteriasetting_post').hide();
+		jQuery('.as_ex_in_id').show();
 	}
 }
 jQuery('#as_criteria, #as_criteriaparam_page, #as_criteriaparam_post').change(toggleCriteriaSettings);
@@ -118,5 +97,34 @@ jQuery('#theform').submit(function() {
 	}
 	return true;
 });
+
+	function revealAdOptions()
+		{
+			var numads = jQuery('#as_numads').val();
+			for(var i=1; i<=6; i++)
+			{
+				var divid = "#adoptions"+i;
+				if(i<=numads) 
+				jQuery(divid).show();
+				else jQuery(divid).hide();
+			}
+			
+		}
+	jQuery('#as_numads').change(revealAdOptions);
+	revealAdOptions(); //call now to set on first page load
     
+	jQuery('.new_ad_option').hide();
+	
 });
+	function show_new_ad(i)
+	{
+		jQuery("#adoptions"+i+" .current-ad").slideUp('slow');
+		jQuery("#adoptions"+i+" .new_ad_option").slideDown('slow');
+		jQuery('input[name="new_ad['+i+']"]').val('yes');
+	}
+	function hide_new_ad(i)
+	{
+		jQuery("#adoptions"+i+" .current-ad").slideDown('slow');
+		jQuery("#adoptions"+i+" .new_ad_option").slideUp('slow');
+		jQuery('input[name="new_ad['+i+']"]').val('');
+	}

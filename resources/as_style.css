@@ -1,1 +1,8 @@
 .as_statusmessage { width: 100%; padding:10px; margin:15px; background: black; color: white; }
+.add-remove,.add-remove:hover{
+	font-size: 30px;
+    font-weight: bold;
+    color: green;
+    line-height: 30px;
+	text-decoration:none !important;
+}
