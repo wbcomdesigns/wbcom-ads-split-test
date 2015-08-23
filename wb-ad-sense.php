@@ -3,7 +3,7 @@
 Plugin Name: WB Ads Rotator with Split Test
 Plugin URI: http://www.wbcomdesigns.com
 Description: It allows you to hooks ads to any custom post type at multiple location and also offers your split testing.
-Version: 1.0
+Version: 1.0.0
 Author: WBCOM DESIGNS
 Author URI: https://wbcomdesigns.com
 License: GPL2
