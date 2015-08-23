@@ -1,6 +1,6 @@
 === WB Ads Rotator with Split Test ===
 Contributors: vapvarun,wbcomdesigns
-Tags: ads, ads manager, advert rotator, advertise, advertisement, advertising, advertising rotator, affiliate, affiliate ads, affiliate advertising, affiliate banner, affiliate marketing, banner, banner ad, banner ads, banner advert, banner advertisement, banner advertising, banner manager, banner rotator, banners, internet-marketing, random ads, rotating ads
+Tags: ads, ads manager, advert rotator, split testing, impression, widget ads, post ads, cpt ads, vapvarun
 Donate link: https://wbcomdesigns.com/donate/
 Requires at least: 4
 Tested up to: 4.2.3
@@ -11,20 +11,20 @@ This plugin is designed for the SPLIT TESTING, you can check performance of your
 
 == Description ==
 Description:
-      •	This plugin is designed for the SPLIT TESTING, you can check performance of your ads layout and on the basis of them you can select one of them for your regular use.
+      â€¢	This plugin is designed for the SPLIT TESTING, you can check performance of your ads layout and on the basis of them you can select one of them for your regular use.
 
-•	It is the only one FREE plugin which give you opportunity of SPLIT testing.
+â€¢	It is the only one FREE plugin which give you opportunity of SPLIT testing.
 
-•	Wb Ads Rotator helps you to manage advertisements you want to display on your website.
-•	You can decide the position where you allow to display ads like on posts, pages, media, homepage or any custom post type like above post, inside post, below post or in the provided sidebars.
+â€¢	Wb Ads Rotator helps you to manage advertisements you want to display on your website.
+â€¢	You can decide the position where you allow to display ads like on posts, pages, media, homepage or any custom post type like above post, inside post, below post or in the provided sidebars.
 
-•	You can create your own layout for showing your advertisements.  
-•	In a layout Maximum six ads you can have.
-•	You have to decide how many layouts you want for your website.
+â€¢	You can create your own layout for showing your advertisements.  
+â€¢	In a layout Maximum six ads you can have.
+â€¢	You have to decide how many layouts you want for your website.
 
-•	You can also check how many traffic generate by a layout so that you can know about which advertisements your users are more interested.
-•	Layouts automatically can switch to one another so you can display many ads to your users.
-•	Wb Ads Rotator provides you all stats for traffic coming to your advertisements.
+â€¢	You can also check how many traffic generate by a layout so that you can know about which advertisements your users are more interested.
+â€¢	Layouts automatically can switch to one another so you can display many ads to your users.
+â€¢	Wb Ads Rotator provides you all stats for traffic coming to your advertisements.
 
 
 == Installation ==
@@ -59,7 +59,7 @@ When you click on filters, you can see there you have an option to create new fi
 
 Then after you click on Create New Filter then you can set up specific ads on specific post type you want with the help of option named as criteria, it has a dropdown menu which have all post type and custom post type. You have to select from there.
 
-Exclude Ids and Include Ids are also given there so that you can decide the specific area where you want to display your ads. You just need to enter Ids for which you want to show ads, in Include Ids option and where you don’t want, put that Ids in Exclude Ids option.
+Exclude Ids and Include Ids are also given there so that you can decide the specific area where you want to display your ads. You just need to enter Ids for which you want to show ads, in Include Ids option and where you donâ€™t want, put that Ids in Exclude Ids option.
 
 When you successfully create filters, you can set the priority for them as we have provided a Reorder Filter option.
 
