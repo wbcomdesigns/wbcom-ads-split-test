@@ -5,7 +5,7 @@ Plugin URI: http://www.wbcomdesigns.com
 Description: It allows you to hooks ads to any custom post type at multiple location and also offers your split testing.
 Version: 1.0
 Author: WBCOM DESIGNS
-Author URI: https://www.wbcomdesigns.com
+Author URI: https://wbcomdesigns.com
 License: GPL2
 http://www.gnu.org/licenses/gpl-2.0.html
 */ 
@@ -123,6 +123,7 @@ class wb_ads_rotator
 			//save vars to db
 			update_option( 'wb_ads_settings', $this->settings );
 		}
+		
 	}
 	
 	public function registerSidebars()
@@ -270,12 +271,16 @@ class wb_ads_rotator
                         </select>
                     </div>
                 </div>
-            <?php }}?>
+            <?php }
+			}
+			?>
             <div class="form-group">
                 <div class='col-sm-12'>
                     <hr style='border-top:1px solid black'/>
                 </div>
             </div>
+           <?php 
+			do_action('before_ads_setting_start', $editingad, $currentad );?>
             <div class="form-group">
                 <label class='col-sm-2 control-label'><?php _e( 'Ads type', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></label>
                 <div class='col-sm-12'>
@@ -283,7 +288,7 @@ class wb_ads_rotator
                     <label class='radio-inline'><input type='radio' name='wb_ads_type' id='wb_ads_type2' value='script' <?php if($editingad && $currentad['wb_ads_type'] == 'script') echo "checked='checked'"; ?>><?php _e( 'Custom Script', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></label>
                 </div>
             </div>
-            <div class='form-group'>
+            <div class='form-group wb_adlocation'>
                 <label class='col-sm-2 control-label' for='wb_adlocation'><?php _e( 'Ad Location', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></label>
                 <div class='col-sm-12'>
                     <select name='wb_adlocation' id='wb_adlocation' class='form-control wb_adlocation'>
@@ -307,10 +312,10 @@ class wb_ads_rotator
                         <option value='SB' <?php if($editingad && isset($currentad) && $currentad['wb_adlocation'] == 'SB') echo "selected='selected'"; ?>><?php _e( 'Sidebar position B', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></option>
                         <option value='SC' <?php if($editingad && isset($currentad) && $currentad['wb_adlocation'] == 'SC') echo "selected='selected'"; ?>><?php _e( 'Sidebar position C', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></option>
                     </select>
-                    <div id='sidebarwarning' style='display:none'>Note: If placing on a sidebar, be sure you've <a href='#' target='_blank'>set up the WbAds Sidebar Widget</a></div>
+                    <div id='sidebarwarning' style='display:none'><?php _e( "placing on a sidebar, be sure you've ", WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?><?php _e( 'Note: If ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?><a href='#' target='_blank'><?php _e( 'set up the WbAds Sidebar Widget', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></a></div>
                 </div>
             </div>
-            <div class='form-group'>
+            <div class='form-group wb_adpadding'>
                 <label class='col-sm-2 control-label' for='wb_adpadding'><?php _e( 'Padding', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></label>
                 <div class='col-sm-12'>
                     <input type='text' name='wb_adpadding' id='wb_adpadding' class='form-control' <?php if($editingad && isset($currentad)) echo "value='$currentad[wb_adpadding]'"; ?>>
@@ -403,7 +408,7 @@ class wb_ads_rotator
 		//print_r($_POST);
 		foreach($this->settings['segments'] as $fil_key=>$filter)
             {
-				$selected_ly=$_POST[$filter['segment_uid']];
+				$selected_ly=sanitize_text_field($_POST[$filter['segment_uid']]);
 				if(isset($filter['ads_layout']) && !empty($filter['ads_layout']) && isset($selected_ly) && !empty($selected_ly))
 				{					
 					foreach($filter['ads_layout'] as $key=>$layout)
@@ -433,7 +438,7 @@ class wb_ads_rotator
 			$wb_ads['wb_colortext'] = sanitize_text_field( $_POST['wb_colortext']);
 			$wb_ads['wb_colorurl'] = sanitize_text_field( $_POST['wb_colorurl']);
 		}
-	
+		$wb_ads = apply_filters('filter_ads_layout_meta_post', $wb_ads);
 		// Update the meta field in the database.
 		update_post_meta( $post_id, '_wb_ads_rotator_settings', $wb_ads );
 	}
@@ -456,7 +461,7 @@ class wb_ads_rotator
 	
 	public function make_main_page()
 	{
-		include( WBCOM_ADS_ROTATOR_PATH . 'split-test.php' );
+		include( apply_filters('filter_layout_template', WBCOM_ADS_ROTATOR_PATH . 'split-test.php') );
 	}
 	
 	public function cleanInput( $string )
@@ -479,14 +484,15 @@ class wb_ads_rotator
 		if($action == 'addsegment')
 		{
 			$newsegment = array();
-			$newsegment['criteria'] = $_POST['as_criteria'];
-			if($_POST['as_criteria'] == 'page' || $_POST['as_criteria'] == 'post') 
+			$criteria=sanitize_text_field($_POST['as_criteria']);
+			$newsegment['criteria'] = $criteria;
+			if( $criteria == 'page' || $criteria == 'post') 
 			{
-				$newsegment['criteriaparam_in'] = $_POST['as_include'];
-				$newsegment['criteriaparam_ex'] = $_POST['as_exclude'];
+				$newsegment['criteriaparam_in'] = sanitize_text_field($_POST['as_include']);
+				$newsegment['criteriaparam_ex'] = sanitize_text_field($_POST['as_exclude']);
 			}
-			$newsegment['segmentname'] = $this->cleanInput($_POST['as_segmentname']);
-			$newsegment['segmentabbrev'] = $this->cleanInput($_POST['as_segmentabbrev']);
+			$newsegment['segmentname'] = $this->cleanInput(sanitize_text_field($_POST['as_segmentname']));
+			$newsegment['segmentabbrev'] = $this->cleanInput(sanitize_text_field($_POST['as_segmentabbrev']));
 			$newsegment['segment_uid'] = 'wb_ad_'.time();
 
 			//add to beginning of list
@@ -532,8 +538,8 @@ class wb_ads_rotator
 		elseif( $action == 'addlayout' )
 		{
 			//just add it to the settings var
-			$editing = ( isset( $_POST['as_editinglayouti'] ) && $_POST['as_editinglayouti'] != '') ? true : false;
-			$newlayout['wb_layoutname'] = $this->cleanInput( $_POST['wb_layoutname'] );
+			$editing = ( isset( $_POST['as_editinglayouti'] ) && sanitize_text_field($_POST['as_editinglayouti']) != '') ? true : false;
+			$newlayout['wb_layoutname'] = $this->cleanInput( sanitize_text_field($_POST['wb_layoutname']) );
 			$newlayout['whenstarted'] = time();
 			$newlayout['ads'] = array();
 			for( $i=1; $i<=$_POST['as_numads']; $i++ )
@@ -543,8 +549,8 @@ class wb_ads_rotator
 					if( $_POST['wb_ads_type'][$i] == "html" || $_POST['wb_ads_type'][$i] == "script" )
 					{
 						$ads_post = array(
-						  'post_title'    => $this->cleanInput( $_POST['wb_ad_title'][$i] ),
-						  'post_content'  => $this->cleanInput( $_POST['wb_customcode'][$i] ),
+						  'post_title'    => $this->cleanInput( sanitize_text_field($_POST['wb_ad_title'][$i]) ),
+						  'post_content'  => $this->cleanInput( sanitize_text_field($_POST['wb_customcode'][$i]) ),
 						  'post_type'	  => 'wb_ads_rotator',
 						  'post_status'   => 'publish',
 						  'post_author'   => get_current_user_id()
@@ -567,6 +573,7 @@ class wb_ads_rotator
 								$wb_ads['wb_colorurl'] = sanitize_text_field( $_POST['wb_colorurl'][$i] );
 							}
 						
+							$wb_ads = apply_filters( 'filter_ads_layout_meta_option', $wb_ads );
 							// Update the meta field in the database.
 							update_post_meta( $post_id, '_wb_ads_rotator_settings', $wb_ads );
 						}
@@ -575,15 +582,15 @@ class wb_ads_rotator
 				}
 				else
 				{
-					$newlayout['ads'][] = $_POST['as_layout_ads'][$i];
+					$newlayout['ads'][] = sanitize_text_field($_POST['as_layout_ads'][$i]);
 				}
 			}
 
-			$segmenti = $_POST['as_segmenti'];
+			$segmenti = sanitize_text_field($_POST['as_segmenti']);
 			//add new or edit?
 			if( $editing )
 			{
-				$editingrecipei = $_POST['as_editinglayouti'];
+				$editingrecipei = sanitize_text_field($_POST['as_editinglayouti']);
 				$newlayout['active'] = $this->settings['segments'][$segmenti]['ads_layout'][$editingrecipei]['active'];
 				$this->settings['segments'][$segmenti]['ads_layout'][$editingrecipei] = $newlayout;
 			}
@@ -826,11 +833,11 @@ class wb_ads_rotator
 		return "XX/XX/XX";
 	}
 }
-include_once( 'render-class.php' );
-include_once( 'widget.php' );
-
-$wb_ad_sense = new wb_ads_rotator();
-
+	global $wb_ad_sense;
+	$wb_ad_sense = new wb_ads_rotator();
+	include_once( 'render-class.php' );
+	include_once( 'widget.php' );
+	
 //register activation hooks
 register_activation_hook( __FILE__ , array( $wb_ad_sense, 'activate' ) );
 register_deactivation_hook( __FILE__ , array( $wb_ad_sense, 'deactivate' ) );

@@ -29,14 +29,14 @@ if(isset($_GET['as_newlayout']) || isset($_GET['wb_editlayout']))
 		$currentlayout = $wb_ad_sense->settings['segments'][$segmenti]['ads_layout'][$layouti];
 	}
 	?>
-	<h2><?php if($editinglayout) echo "Editing"; else echo "Create New"; ?> Ad Layout</h2>
+	<h2><?php if($editinglayout) echo "Editing"; else _e( "Create New", WBCOM_ADS_ROTATOR_TEXT_DOMIAN ); ?> <?php _e( 'Ad Layout', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></h2>
 	
 	<form method='post' class='form-horizontal' id="theform" action="<?php echo admin_url('admin.php?page=wb-ads-rotator-main') ?>">
 	<input type='hidden' name='as_action' value='addlayout'>
 	<input type='hidden' name='as_segmenti' value='<?php echo $segmenti; ?>'>
 	<?php if($editinglayout) echo "<input type='hidden' name='as_editinglayouti' value='$layouti'>"; ?>
 	<div class='form-group'>
-		<label class='col-sm-2 control-label' for='as_numads'># Ads on page</label>
+		<label class='col-sm-2 control-label' for='as_numads'><?php _e( '# Ads on page', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></label>
 		<div class='col-sm-6'>
 			<select name='as_numads' id='as_numads'>
 				<?php
@@ -64,7 +64,7 @@ if(isset($_GET['as_newlayout']) || isset($_GET['wb_editlayout']))
 	</div>
 	
 	<div class='form-group'>
-		<label class='col-sm-2 control-label' for='wb_layoutname'>Layout Name</label>
+		<label class='col-sm-2 control-label' for='wb_layoutname'><?php _e( 'Layout Name', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></label>
 		<div class='col-sm-6'>
 			<input type='text' class='form-control' name='wb_layoutname' id='wb_layoutname' maxlength=18 <?php if($editinglayout) echo "value=\"$currentlayout[wb_layoutname]\""; ?>>
 		</div>
@@ -72,7 +72,7 @@ if(isset($_GET['as_newlayout']) || isset($_GET['wb_editlayout']))
 	
 	<div class='form-group'>
 		<div class="col-sm-offset-2 col-sm-6">
-			<button type='submit' id="createbutton" class='btn btn-primary'>Save Ad Layout</button>
+			<button type='submit' id="createbutton" class='btn btn-primary'><?php _e( 'Save Ad Layout', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></button>
 		</div>
 	</div>
 	</form>
@@ -82,8 +82,8 @@ if(isset($_GET['as_newlayout']) || isset($_GET['wb_editlayout']))
 else
 {
 	?>
-	<h2>Welcome to Wb Ads Rotator!</h2>
-	<p>Congratulations on installing Wb Ads Rotator! You're about to run some kick-butt split tests to help you <b>increase your AdSense revenue</b>. Sweet!</p>
+	<h2><?php _e( 'Welcome to Wb Ads Rotator!', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></h2>
+	<p><?php _e( "Congratulations on installing Wb Ads Rotator! You're about to run some kick-butt split tests to help you <b>increase your AdSense revenue</b>. Sweet!", WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></p>
 	
 	<?php
 				
@@ -95,8 +95,8 @@ else
 		foreach($wb_ad_sense->settings['segments'] as $i=>$segment)
 		{
 			$fromdate = $wb_ad_sense->get_ir_fromdate($i);
-			$statsheaderrow = "<tr><td colspan=5></td><td>Views</td><td>Clicks</td></tr>";
-			$irdate = "<input type='hidden' id='datetestinput$i' /> since <span id='datetestdisplay$i' style='cursor:pointer; text-decoration:underline'>$fromdate</span>";
+			$statsheaderrow = "<tr><td colspan=5></td><td>".__( 'Views', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</td><td>".__( 'Clicks', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</td></tr>";
+			$irdate = "<input type='hidden' id='datetestinput$i' /> ".__( 'since', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )." <span id='datetestdisplay$i' style='cursor:pointer; text-decoration:underline'>$fromdate</span>";
 			$script = "<script>
 					jQuery('#datetestinput$i').datepicker({ onSelect: function(d) { window.location='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_action=setreportdate&as_segmenti=$i&as_fromdate='+d; } });
 					jQuery('#datetestdisplay$i').click(function() {  jQuery('#datetestinput$i').datepicker( 'show' ); });
@@ -104,7 +104,7 @@ else
 			
 			echo "<h3>$segment[segmentname]</h3>";
 			echo "<table class='table table-hover'>";
-			echo "<tr><th></th><th>Recipe</th><th>Date Started</th><th>Status</th><th># Ads</th><th colspan=5 style='text-align:center'>Stats $irdate</th></tr>";
+			echo "<tr><th></th><th>".__( 'Layout', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</th><th>".__( 'Date Started', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</th><th>".__( 'Status', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</th><th>".__( '# Ads', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</th><th colspan=5 style='text-align:center'>".__( 'Stats', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )." $irdate</th></tr>";
 			echo $statsheaderrow;
 			if(isset($segment['ads_layout']) && count($segment['ads_layout']))
 			{
@@ -114,8 +114,8 @@ else
 					echo "<tr>";
 					//actions
 					echo "<td>";
-					echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_action=deletelayout&as_segmenti=$i&wb_layouti=$j' title='Delete' onClick=\"return confirm('Are you sure you want to delete?')\"><img src='".WBCOM_ADS_ROTATOR_URL."resources/delete.png' /></a> ";
-					echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&wb_editlayout=1&as_segmenti=$i&wb_layouti=$j' title='Edit' onClick=\"return confirm('Editing a test after it has started could affect the accuracy of your results. Are you sure you want to edit?')\"><img src='".WBCOM_ADS_ROTATOR_URL."resources/edit.png' /></a> ";
+					echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_action=deletelayout&as_segmenti=$i&wb_layouti=$j' title='Delete' onClick=\"return confirm('".__( 'Are you sure you want to delete?', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."')\"><img src='".WBCOM_ADS_ROTATOR_URL."resources/delete.png' /></a> ";
+					echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&wb_editlayout=1&as_segmenti=$i&wb_layouti=$j' title='Edit' onClick=\"return confirm('".__( 'Editing a test after it has started could affect the accuracy of your results. Are you sure you want to edit?', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."')\"><img src='".WBCOM_ADS_ROTATOR_URL."resources/edit.png' /></a> ";
 					if($layout['active']) echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_action=pauselayout&as_segmenti=$i&wb_layouti=$j' title='Pause'><img src='".WBCOM_ADS_ROTATOR_URL."resources/pause.png' /></a>";
 					else echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_action=resumelayout&as_segmenti=$i&wb_layouti=$j' title='Resume'><img src='".WBCOM_ADS_ROTATOR_URL."resources/resume.png' /></a>";
 					echo "</td>";
@@ -125,8 +125,8 @@ else
 					echo "<td>".date("m/d/Y",$layout['whenstarted'])."</td>";
 					//status
 					echo "<td>";
-					if($layout['active']) echo "<span style='color:green'>Active</span>";
-					else echo "<span style='color:orange'>Paused</span>";
+					if($layout['active']) echo "<span style='color:green'>".__( 'Active', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</span>";
+					else echo "<span style='color:orange'>".__( 'Paused', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</span>";
 					echo "</td>";
 					//ad count
 					echo "<td>".count($layout['ads'])."</td>";
@@ -137,13 +137,13 @@ else
 			}
 			else
 			{
-				echo "<tr><td colspan=10>No ad recipes yet.</td></tr>";
+				echo "<tr><td colspan=10>".__( 'No ad recipes yet.', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</td></tr>";
 			}
-			echo "<tr><td colspan=10>Create <a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_newlayout=1&as_segmenti=$i'>New Layout</a></td></tr>";
+			echo "<tr><td colspan=10>".__( 'Create ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_newlayout=1&as_segmenti=$i'>".__( 'New Layout', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )."</a></td></tr>";
 			echo "</table><br/>";
 			echo $script;
 		}
-		echo '<p>Need help? <a href="#" target="_blank">Creating your first split test</a></p>';
+		echo '<p>'.__( 'Need help? ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ).'<a href="#" target="_blank">'.__( 'Creating your first split test', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ).'</a></p>';
 	
 }
 
@@ -157,7 +157,7 @@ function printAdOptions($i,$editingad,$currentad)
             </div>
         </div>
        <div class="form-group current-ad">
-            <label class='col-sm-2 control-label'>Select Ad <?php echo $i; ?></label>
+            <label class='col-sm-2 control-label'><?php _e( 'Select Ad', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?> <?php echo $i; ?></label>
             <div class='col-sm-6'>
                 <select name='as_layout_ads[<?php echo $i; ?>]' id='as_layout_ads<?php echo $i; ?>' class='form-control'>
                 <?php
@@ -234,7 +234,7 @@ function printAdOptions($i,$editingad,$currentad)
                         <option value='SB' ><?php _e( 'Sidebar position B', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></option>
                         <option value='SC' ><?php _e( 'Sidebar position C', WBCOM_ADS_ROTATOR_TEXT_DOMIAN );?></option>
                     </select>
-                    <div class='sidebarwarning' style='display:none'>Note: If placing on a sidebar, be sure you've <a href='http://www.ampedsense.com/placing-adsense-ads-wordpress-sidebar/' target='_blank'>set up the AmpedSense Sidebar Widget</a></div>
+                    <div class='sidebarwarning' style='display:none'><?php _e( "Note: If placing on a sidebar, be sure you've ", WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?> <a href='#' target='_blank'><?php _e( 'set up the AmpedSense Sidebar Widget', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></a></div>
                 </div>
             </div>
             <div class='form-group'>

@@ -9,7 +9,7 @@ class WbAdsSidebarA extends WP_Widget
 		parent::__construct(
 			'WbAdsSidebarA', // Base ID
 			'WbAds Sidebar A', // Name
-			array( 'description' => __( 'A container for split testing AdSense on a sidebar', 'text_domain' ), ) // Args
+			array( 'description' => __( 'A container for split testing AdSense on a sidebar', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ), ) // Args
 		);
 	}
 
@@ -38,7 +38,7 @@ class WbAdsSidebarB extends WP_Widget
 		parent::__construct(
 			'WbAdsSidebarB', // Base ID
 			'WbAds Sidebar B', // Name
-			array( 'description' => __( 'A container for split testing AdSense on a sidebar', 'text_domain' ), ) // Args
+			array( 'description' => __( 'A container for split testing AdSense on a sidebar', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ), ) // Args
 		);
 	}
 
@@ -67,7 +67,7 @@ class WbAdsSidebarC extends WP_Widget
 		parent::__construct(
 			'WbAdsSidebarC', // Base ID
 			'WbAds Sidebar C', // Name
-			array( 'description' => __( 'A container for split testing AdSense on a sidebar', 'text_domain' ), ) // Args
+			array( 'description' => __( 'A container for split testing AdSense on a sidebar', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ), ) // Args
 		);
 	}
 
