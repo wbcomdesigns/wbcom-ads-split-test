@@ -23,94 +23,94 @@ class WbRenderer
 		if($this->ad['adlocation']=="AP")
 		{
 			//above post
-			$thecontent = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>".$thecontent;
+			$thecontent = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span></span><br />".$adhtml."</div>".$thecontent;
 		}
 		elseif($this->ad['adlocation']=="IL")
 		{
 			//inline left
-			$thecontent = $this->watermark."<div style='float:left; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>".$thecontent;
+			$thecontent = $this->watermark."<div style='float:left; $css $padding'><span></span><br />".$adhtml."</div>".$thecontent;
 		}
 		elseif($this->ad['adlocation']=="IR")
 		{
 			//inline right
-			$thecontent = $this->watermark."<div style='float:right; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>".$thecontent;
+			$thecontent = $this->watermark."<div style='float:right; $css $padding'><span></span><br />".$adhtml."</div>".$thecontent;
 		}
 		elseif($this->ad['adlocation']=="PL")
 		{
 			//after 1st paragraph, left			
-			$addiv = $this->watermark."<div style='float:left; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:left; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"P");
 		}
 		elseif($this->ad['adlocation']=="PC")
 		{
 			//after 1st paragraph, center			
-			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"P");
 		}
 		elseif($this->ad['adlocation']=="PR")
 		{
 			//after 1st paragraph, right			
-			$addiv = $this->watermark."<div style='float:right; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:right; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"P");
 		}
 		elseif($this->ad['adlocation']=="1L")
 		{
 			//after 1/4 of content, left			
-			$addiv = $this->watermark."<div style='float:left; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:left; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"1");
 		}
 		elseif($this->ad['adlocation']=="1C")
 		{
 			//after 1/4 of content, center			
-			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"1");
 		}
 		elseif($this->ad['adlocation']=="1R")
 		{
 			//after 1/4 of content, right			
-			$addiv = $this->watermark."<div style='float:right; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:right; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"1");
 		}
 		elseif($this->ad['adlocation']=="2L")
 		{
 			//after 1/2 of content, left			
-			$addiv = $this->watermark."<div style='float:left; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:left; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"2");
 		}
 		elseif($this->ad['adlocation']=="2C")
 		{
 			//after 1/2 of content, center			
-			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"2");
 		}
 		elseif($this->ad['adlocation']=="2R")
 		{
 			//after 1/2 of content, right			
-			$addiv = $this->watermark."<div style='float:right; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:right; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"2");
 		}
 		elseif($this->ad['adlocation']=="3L")
 		{
 			//after 3/4 of content, left			
-			$addiv = $this->watermark."<div style='float:left; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:left; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"3");
 		}
 		elseif($this->ad['adlocation']=="3C")
 		{
 			//after 3/4 of content, center			
-			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='width:100%; text-align:center; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"3");
 		}
 		elseif($this->ad['adlocation']=="3R")
 		{
 			//after 3/4 of content, right			
-			$addiv = $this->watermark."<div style='float:right; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$addiv = $this->watermark."<div style='float:right; $css $padding'><span></span><br />".$adhtml."</div>";
 			$thecontent = $this->inject_at_distance($thecontent,$addiv,"3");
 		}
 		elseif($this->ad['adlocation']=="BP")
 		{
 			//below post
-			$thecontent = $thecontent.$this->watermark."<div style='width:100%; text-align:center; $css $padding'><span><img style='float: left;padding: 2px;' src='http://modernlensmagazine.com/files/2015/04/ad-header.png' /></span><br />".$adhtml."</div>";
+			$thecontent = $thecontent.$this->watermark."<div style='width:100%; text-align:center; $css $padding'><span></span><br />".$adhtml."</div>";
 		}
 		
 		//return since filter
