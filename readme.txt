@@ -24,8 +24,7 @@ Description:
 
 •	You can also check how many traffic generate by a layout so that you can know about which advertisements your users are more interested.
 •	Layouts automatically can switch to one another so you can display many ads to your users.
-•	Wb Ads Rotator provides you all stats for traffic coming to your advertisements.
-
+•	Wb Ads Rotator provides you all stats for traffic coming to your advertisements. If you need additional help you can contact us for [Custom Development](https://wbcomdesigns.com/plugins/wb-ads-rotator/)
 
 == Installation ==
 From Plugin Directory :-
