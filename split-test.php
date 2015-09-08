@@ -120,7 +120,7 @@ else
 					else echo "<a href='".admin_url('admin.php?page=wb-ads-rotator-main')."&as_action=resumelayout&as_segmenti=$i&wb_layouti=$j' title='Resume'><img src='".WBCOM_ADS_ROTATOR_URL."resources/resume.png' /></a>";
 					echo "</td>";
 					//namef
-					echo "<td><a href='".$previewurl."' target='_blank'>$layout[wb_layoutname]</a></td>";
+					echo "<td>$layout[wb_layoutname]</td>";
 					//date
 					echo "<td>".date("m/d/Y",$layout['whenstarted'])."</td>";
 					//status
@@ -131,7 +131,7 @@ else
 					//ad count
 					echo "<td>".count($layout['ads'])."</td>";
 					//show stats, or link to stats
-					echo "<td>".$layout['view_count']."</td>"; //views
+					echo "<td>".(isset($layout['view_count'])?$layout['view_count']:'0')."</td>"; //views
 					echo "<td></td>"; //clicks
 				}
 			}
@@ -143,7 +143,7 @@ else
 			echo "</table><br/>";
 			echo $script;
 		}
-		echo '<p>'.__( 'Need help? ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ).'<a href="#" target="_blank">'.__( 'Creating your first split test', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ).'</a></p>';
+		echo '<p>'.__( 'Need help? ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ).'<a href="https://wbcomdesigns.com/plugins/wb-ads-rotator/" target="_blank">'.__( 'Creating your first split test', WBCOM_ADS_ROTATOR_TEXT_DOMIAN ).'</a></p>';
 	
 }
 
