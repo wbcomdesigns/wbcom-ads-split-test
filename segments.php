@@ -14,7 +14,7 @@ if(!empty($_GET['as_newsegment']))
 {
 	?>
 <h2><?php _e( 'Create New Filter', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></h2>
-<p><?php _e( 'Set up filters if you want to have specific ads show (or not show) on particular pages.', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?> <a href="#" target="_blank"><?php _e( 'Learn how', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></a></p>
+<p><?php _e( 'Set up filters if you want to have specific ads show (or not show) on particular pages.', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?> <a href="https://wbcomdesigns.com/plugins/wb-ads-rotator/" target="_blank"><?php _e( 'Learn how', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></a></p>
 
 <form method='post' class='form-horizontal' id="theform" action="<?php echo admin_url('admin.php?page=wb-ads-segments') ?>">
 <input type='hidden' name='as_action' value='addsegment'>
@@ -80,7 +80,7 @@ else
 	?>
 <h2><?php _e( 'Filters', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></h2>
 <h4><?php _e( 'Filters are a way to separate your traffic into specific categories', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></h4>
-<p><?php _e( 'Need help? ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?><a href="#" target="_blank"><?php _e( 'How to use filters', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></a></p>
+<p><?php _e( 'Need help? ', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?><a href="https://wbcomdesigns.com/plugins/wb-ads-rotator/" target="_blank"><?php _e( 'How to use filters', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></a></p>
 <?php if($message) echo "<div class='as_statusmessage'>$message</div>"; ?>
 <table class='table table-hover'>
 	<tr><th></th><th><?php _e( 'Name', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></th><th><?php _e( 'Abbrev.', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></th><th><?php _e( 'Criteria', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></th><th><?php _e( 'Priority', WBCOM_ADS_ROTATOR_TEXT_DOMIAN )?></th></tr>
